@@ -5,32 +5,27 @@
  */
 package memoria;
 
-import proceso.Proceso;
-
 /**
  * Clase que respresenta la equivalencia de una pagina pero en memoria fisica.
  */
-public class Marco {
+public class Segmento {
 
     private int id;
+    private int numero;
     private int tamanio;
-    private boolean ocupado;
 
-    public Marco(){
-        id=0;
-        tamanio = 100;
-        ocupado = false;
+    public Segmento(int i, int t, int n) {
+        id = i;
+        tamanio = t;
+        numero  = n;
+    }
+    
+    public int getNumero() {
+        return numero;
     }
 
-    public void ocuparBloque(Proceso p){
-        setId(p.getId());
-        setOcupado(true);
-    }
-    public void desocuparBloque(Proceso p){
-        if(getId()==p.getId()){
-            setId(0);
-            setOcupado(false);
-        }
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public int getId() {
@@ -47,13 +42,5 @@ public class Marco {
 
     public void setTamanio(int tamanio) {
         this.tamanio = tamanio;
-    }
-
-    public boolean isOcupado() {
-        return ocupado;
-    }
-
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
     }
 }

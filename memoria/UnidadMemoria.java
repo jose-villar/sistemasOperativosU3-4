@@ -11,13 +11,18 @@ import proceso.Proceso;
 
 public class UnidadMemoria {
 
-    private ArrayList<Marco> bloques;
+    private ArrayList<Integer> memoria = new ArrayList<>();
+   
     private ArrayList<Proceso> procesos;
+    
+    
     private int tamanio;
     private int tamanio_libre;
+    
+    
     public UnidadMemoria(int t){
         procesos = new ArrayList<>();
-        bloques = new ArrayList<>();
+        
         tamanio = t;
         tamanio_libre = tamanio;
     }
@@ -56,6 +61,78 @@ public class UnidadMemoria {
         else
             return false;
     }
+    
+    
+    //Rellenando la memoria con ceros
+    public void crearMemoria(){
+        for(int i=0; i<6000;i++){
+            memoria.add(0);
+        }
+    }
+
+    
+    public void fragmentacion(Segmento seg){
+        int tamanio = seg.getTamanio();
+        int id = seg.getId();
+        int posicion;
+        
+        sacarVacios();
+        posicion = posicionVacio(tamanio);
+        
+        for(int i=0; i<tamanio; i++){
+            memoria.add(id);
+            System.out.println("El segmento id "+id+ " se almaceno en el espacio "+posicion+" de memoria");
+        }
+ 
+    }
+    
+    
+    //Busca una posicion vacia en el arreglo
+    //en la que se pueda poner el segmento de
+    //un tamaño tamanio
+    public int posicionVacio(int tamanio){
+        int count = 0;
+        int pos=0;
+        
+        for(int i=0; i<memoria.size(); i++){
+            
+            if(count==tamanio){
+                break;
+            }
+            
+            if(memoria.get(i).equals(0)){
+                count+=1;
+            }
+            pos+=1;
+        }
+        pos = pos-count;
+
+        return pos;
+    }
+    
+    
+    //Se recorre el arreglo de la memoria
+    //se buscan todos los valores que no sean vacios
+    //y se dejan esos valores en un arreglo auxiliar,
+    //luego se vacia la memoria y se rellena con los valores
+    //del arreglo auxiliar.
+    public void sacarVacios(){
+        ArrayList<Integer> aux = new ArrayList<>();
+        
+        for(int i=0; i<memoria.size();i++){
+            if(memoria.get(i)!=0){
+                aux.add(memoria.get(i));
+            }
+        }
+        memoria.clear();
+        
+        for(int i=0; i<aux.size(); i++){
+            memoria.add(aux.get(i));
+        }
+        aux.clear();
+    }
+        
+    
     public ArrayList<Proceso> getProcesos() {
         return procesos;
     }

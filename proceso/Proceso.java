@@ -1,6 +1,7 @@
 package proceso;
 
 import java.util.ArrayList;
+import memoria.Segmento;
 
 public class Proceso {
 
@@ -11,7 +12,7 @@ public class Proceso {
     private boolean estado;
     private static final int DEFAULT_INITIAL_PRIORITY = 1;
     private int prioridad;
-    private ArrayList<Pagina> paginas;
+    private ArrayList<Segmento> segmentos;
     
     /**
      * Constructor del proceso sin prioridad
@@ -27,6 +28,7 @@ public class Proceso {
         tiempo_computo = tc;
         estado = true;
         prioridad = DEFAULT_INITIAL_PRIORITY;
+        segmentos = new ArrayList<>();
     }
     /**
      * Constructor del proceso con prioridad
@@ -43,6 +45,7 @@ public class Proceso {
         tiempo_computo = tc;
         estado = true;
         prioridad = prio;
+        segmentos = new ArrayList<>();
     }
     /**
      * disminuye el tiempo de computo del proceso
@@ -55,6 +58,31 @@ public class Proceso {
             System.out.println("Proceso/ Tiempo cumplido");
     }
 
+    public void segmentarProceso(){
+        
+        int tamanioSeg, tamanioSegAux;
+        int tamanioRestante=getTamanio();
+        int numeroSeg = 1;
+        while (tamanioRestante>0){
+            tamanioSegAux = getTamanioSeg();
+            if(tamanioSegAux<=tamanioRestante){
+                tamanioSeg = tamanioSegAux;
+            }
+            else{
+                tamanioSeg = tamanioRestante;
+            }
+            System.out.println(getEtiqueta()+ " creando segmento "+numeroSeg+" de " +tamanioSeg);
+            tamanioRestante = tamanioRestante - tamanioSeg;
+            addSegmento(new Segmento(getId(),tamanioSeg,numeroSeg));
+            numeroSeg++;
+        }
+    }
+    private void addSegmento(Segmento s){
+        segmentos.add(s);
+    }
+    private int getTamanioSeg(){
+      return (int)(Math.random()*1000+100);
+    }
     public String getEtiqueta() {
         return etiqueta;
     }
@@ -101,6 +129,10 @@ public class Proceso {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Segmento> getSegmentos() {
+      return this.segmentos;
     }
     
 }

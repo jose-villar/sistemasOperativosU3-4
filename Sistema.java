@@ -3,8 +3,10 @@ import cpu.Planificador;
 public class Sistema {
 
     private Planificador cpuPlan;
+    private int tipoFragmentacion;
 
-    public Sistema() throws InterruptedException {
+    public Sistema(int tipoFrag) throws InterruptedException {
+        tipoFragmentacion = tipoFrag;
         cpuPlan = new Planificador();
 
     }
