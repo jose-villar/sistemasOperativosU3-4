@@ -2,9 +2,11 @@ package memoria;
 
 import proceso.Proceso;
 
+import java.util.ArrayList;
+
 public class Almacen{
 
-  private   ArrayList<Proceso> procesos;
+  private ArrayList<Proceso> procesos;
     
     private int tamanio;
     private int tamanio_libre;

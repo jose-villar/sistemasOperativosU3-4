@@ -6,7 +6,7 @@
 package memoria;
 
 import java.util.ArrayList;
-
+import memoria.Segmento;
 import proceso.Proceso;
 
 public class UnidadMemoria {
@@ -73,7 +73,7 @@ public class UnidadMemoria {
     
     public void fragmentacion(Segmento seg){
         int tamanio = seg.getTamanio();
-        int id = seg.getId();
+        int id = seg.getPid();
         int posicion;
         
         sacarVacios();

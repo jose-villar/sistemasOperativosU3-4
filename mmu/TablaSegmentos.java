@@ -8,7 +8,8 @@ La base es donde comienza en la memoria principal
 y el límite es donde termina en la memoria principal
 */
 
-
+import proceso.Proceso;
+import memoria.UnidadMemoria;
 
 public class TablaSegmentos {
 
@@ -29,7 +30,6 @@ public class TablaSegmentos {
 
 
   }
-
 
   public void construirTabla() {
     int[] fila = {0, 0, 100};

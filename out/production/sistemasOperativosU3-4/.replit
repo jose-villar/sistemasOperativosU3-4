@@ -1,0 +1,2 @@
+language = "java10"
+run = "javac ./Main.java Sistema.java cpu/*.java interfaz/*.java memoria/*.java mmu/*.java proceso/*.java utilidad/*.java;java Main"

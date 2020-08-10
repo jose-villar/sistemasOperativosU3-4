@@ -26,7 +26,7 @@ public class Proceso {
         etiqueta = e;
         tamanio = t;
         tiempo_computo = tc;
-        estado = true;
+        finalizado = false;
         prioridad = DEFAULT_INITIAL_PRIORITY;
         segmentos = new ArrayList<>();
     }
@@ -43,7 +43,7 @@ public class Proceso {
         etiqueta = e;
         tamanio = t;
         tiempo_computo = tc;
-        estado = true;
+        finalizado = false;
         prioridad = prio;
         segmentos = new ArrayList<>();
     }
@@ -107,12 +107,12 @@ public class Proceso {
         this.tiempo_computo = tiempo_computo;
     }
 
-    public boolean isActivo() {
-        return estado;
+    public boolean isFinalizado() {
+        return finalizado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setFinalizado(boolean estado) {
+        this.finalizado = estado;
     }
 
     public int getPrioridad() {
