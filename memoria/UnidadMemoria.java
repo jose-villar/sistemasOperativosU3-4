@@ -47,7 +47,7 @@ public class UnidadMemoria {
             System.out.println("Memoria libre: " + getTamanio_libre() + "MB");
             return true;
         } else {
-            System.out.println("No se encontro proceso");
+            System.out.println("No se encontró proceso");
             return false;
         }
     }

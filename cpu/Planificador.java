@@ -2,6 +2,7 @@ package cpu;
 
 import proceso.ColaProcesos;
 import memoria.UnidadMemoria;
+import memoria.Almacen;
 import proceso.Proceso;
 import utilidad.Sleeper;
 
@@ -11,15 +12,15 @@ public class Planificador {
   private final Cpu core1;
   private final ColaProcesos cola;
   private final UnidadMemoria memoriamain;
-  private final UnidadMemoria almacen;
+  private final Almacen almacen;
   private int pid = 1;
 
   public Planificador() {
     core1 = new Cpu();
     sleeper = new Sleeper();
     cola = new ColaProcesos();
-    memoriamain = new UnidadMemoria(6000);
-    almacen = new UnidadMemoria(20000);
+    memoriamain = new UnidadMemoria(64);
+    almacen = new Almacen(20000);
   }
 
   /**
@@ -75,41 +76,21 @@ public class Planificador {
    * Crear procesos de prueba
    */
   private void crearProcesos() {
-    Proceso p1 = crearProceso("explorer.exe", 2000, 5000, 0); 
-    Proceso p2 = crearProceso("adobe.exe", 500, 2500, 1);
-    Proceso p3 = crearProceso("firefox.exe", 2000, 500, 0);
-    Proceso p4 = crearProceso("antivirus.exe", 700, 1000, 1);
-    Proceso p5 = crearProceso("discord.exe", 500, 3000, 0);
-    Proceso p6 = crearProceso("chrome.exe", 3000, 7000, 1);
-    Proceso p7 = crearProceso("cmd.exe", 50, 100);
-    /*
-    if (!memoriamain.addProceso(p1)) {
-      almacen.addProceso(p1);
-    }
-    if (!memoriamain.addProceso(p2)) {
-      almacen.addProceso(p2);
-    }
-
-    if (!memoriamain.addProceso(p3)) {
-      almacen.addProceso(p3);
-    }
-
-    if (!memoriamain.addProceso(p4)) {
-      almacen.addProceso(p4);
-    }
-
-    if (!memoriamain.addProceso(p5)) {
-      almacen.addProceso(p5);
-    }
-
-    if (!memoriamain.addProceso(p6)) {
-      almacen.addProceso(p6);
-    }
-
-    if (!memoriamain.addProceso(p7)) {
-      almacen.addProceso(p7);
-    }*/
-
+    Proceso p1 = crearProceso("explorer.exe", 30, 5000, 0); 
+    Proceso p2 = crearProceso("adobe.exe", 15, 1000, 1);
+    Proceso p3 = crearProceso("firefox.exe", 20, 500, 0);
+    Proceso p4 = crearProceso("antivirus.exe", 10, 1000, 1);
+    Proceso p5 = crearProceso("discord.exe", 8, 3000, 0);
+    Proceso p6 = crearProceso("chrome.exe", 25, 7000, 1);
+    Proceso p7 = crearProceso("cmd.exe", 6, 100);
+    almacen.addProceso(p1);
+    almacen.addProceso(p2);
+    almacen.addProceso(p3);
+    almacen.addProceso(p4);
+    almacen.addProceso(p5);
+    almacen.addProceso(p6);
+    almacen.addProceso(p7);
+    
     cola.printColaProcesos();
 
   }

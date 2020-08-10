@@ -10,12 +10,12 @@ package memoria;
  */
 public class Segmento {
 
-    private int id;
-    private int numero;
-    private int tamanio;
+    private int pid;//id proceso
+    private int numero;//identificador del segmento
+    private int tamanio;//tamanio del segmento
 
     public Segmento(int i, int t, int n) {
-        id = i;
+        pid = i;
         tamanio = t;
         numero  = n;
     }
@@ -28,12 +28,12 @@ public class Segmento {
         this.numero = numero;
     }
 
-    public int getId() {
-        return id;
+    public int getPid() {
+        return pid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public int getTamanio() {

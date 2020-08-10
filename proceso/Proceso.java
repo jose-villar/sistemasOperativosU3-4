@@ -9,7 +9,7 @@ public class Proceso {
     private int id;
     private int tamanio;
     private int tiempo_computo;
-    private boolean estado;
+    private boolean finalizado;//completado - incompleto
     private static final int DEFAULT_INITIAL_PRIORITY = 1;
     private int prioridad;
     private ArrayList<Segmento> segmentos;
@@ -81,7 +81,7 @@ public class Proceso {
         segmentos.add(s);
     }
     private int getTamanioSeg(){
-      return (int)(Math.random()*1000+100);
+      return (int)(Math.random()*3+1);
     }
     public String getEtiqueta() {
         return etiqueta;
